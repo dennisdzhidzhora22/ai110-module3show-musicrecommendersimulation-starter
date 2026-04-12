@@ -29,6 +29,37 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+My understanding of real-world recommendations is that they mainly are split into two strategies: one for making a recommendation based on what people like you liked, and the other for making a recommendation based on specific qualities of songs and their similarity to your individual profile. In my version, I'll prioritize making a recommendation with the latter strategy.
+
+The specific features I'll use for each Song in my simulation are energy, mood, danceability, genre, valence, and tempo.
+
+The UserProfile will store a score for each of the numeric features alongside sets to contain potentially multiple liked categories for the categorical features.
+
+### Data Flow:
+
+```mermaid
+flowchart TD
+    A([User Preferences Dict]) --> B[Scan songs.csv to find min/max BPM]
+    B --> C[For each song in songs.csv]
+    C --> D[Normalize tempo_bpm]
+    D --> E[Score numeric features energy, valence, danceability, acousticness, tempo]
+    E --> F[Score categorical features genre match +2, mood match +1]
+    F --> G[Sum weighted scores max 10 pts]
+    G --> I[Sort all songs by total score descending]
+    I --> J([Top K Recommendations])
+```
+
+Numerical Feature Scoring Formula:
+Score = 1 - |target_feature - song_feature|
+
+This system might also under-prioritize songs that might have genres or moods similar to ones already present in the user preference. For example, out of a group of songs of multiple closely related genres, even if the user might like all the songs, only ones with a genre that's already part of the preferences will have a higher score.
+
+---
+
+## Example Output
+
+![Example Output](example_output.png)
+
 ---
 
 ## Getting Started

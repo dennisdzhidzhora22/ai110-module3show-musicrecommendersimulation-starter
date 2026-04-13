@@ -56,9 +56,13 @@ This system might also under-prioritize songs that might have genres or moods si
 
 ---
 
-## Example Output
+## Example Outputs
 
 ![Example Output](example_output.png)
+![Intense Rock](intense_rock.png)
+![Chill lofi](chill_lofi.png)
+![Contradictory](contradictory.png)
+![Unknown Taste](unknown_taste.png)
 
 ---
 

@@ -75,10 +75,10 @@ def score_song(user_prefs: Dict, song: Dict, tempo_min: float = 60.0, tempo_max:
     score = 0.0
     reasons = []
 
-    # Categorical: genre match (+2.0)
+    # Categorical: genre match (+1.0)
     if song["genre"] in user_prefs.get("genre", set()):
-        score += 2.0
-        reasons.append(f"genre match (+2.0)")
+        score += 1.0
+        reasons.append(f"genre match (+1.0)")
 
     # Categorical: mood match (+1.0)
     if song["mood"] in user_prefs.get("mood", set()):
@@ -87,7 +87,7 @@ def score_song(user_prefs: Dict, song: Dict, tempo_min: float = 60.0, tempo_max:
 
     # Numeric features: weight × (1 - |song_value - user_pref|)
     numeric_features = [
-        ("energy",       2.0),
+        ("energy",       3.0),
         ("danceability", 1.5),
         ("valence",      1.5),
         ("acousticness", 1.5),
